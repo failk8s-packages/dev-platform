@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  BASE_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+BASE_DIR="$( cd -P "$( dirname "$SOURCE" )/.." && pwd )"
+
+CONFIG_FILE=${CONFIG_FILE:-"$BASE_DIR/config.json"}
+
+_registry=$(cat $CONFIG_FILE | jq -r '.registry')
+_name=$(cat $CONFIG_FILE | jq -r '.package.name')
+_version=$(cat $CONFIG_FILE | jq -r '.package.version')
+
+
+function update-build-and-push {
+    echo "Updating package: $_name:$_version"
+    pushd $BASE_DIR/src/bundle &>/dev/null
+    vendir sync
+    kbld -f . --imgpkg-lock-output .imgpkg/images.yml
+    imgpkg push --bundle $_registry/$_name-package:$_version --file .
+    popd &>/dev/null
+}
+
+function create-manifests {
+    rm -rf $BASE_DIR/target && mkdir -p $BASE_DIR/target/k8s && mkdir -p $BASE_DIR/target/test 
+    pushd $BASE_DIR/src/bundle &>/dev/null
+    echo "Creating manifest files:"
+    ytt --data-values-file $CONFIG_FILE -f $BASE_DIR/src/templates/package/k8s --output-files $BASE_DIR/target/k8s --ignore-unknown-comments
+    ytt --data-values-file $CONFIG_FILE -f $BASE_DIR/src/templates/package/test --output-files $BASE_DIR/target/test --ignore-unknown-comments
+    popd &>/dev/null
+}
