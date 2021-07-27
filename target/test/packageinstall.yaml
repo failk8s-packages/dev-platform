@@ -1,0 +1,15 @@
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: dev-platform-package
+  namespace: dev-platform-package
+spec:
+  serviceAccountName: dev-platform-sa
+  packageRef:
+    refName: dev-platform.tkgdev.failk8s.com
+    versionSelection:
+      constraints: develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: dev-platform-config

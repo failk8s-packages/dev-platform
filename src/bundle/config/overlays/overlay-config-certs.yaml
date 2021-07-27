@@ -1,0 +1,39 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+
+#@ def config():
+#! certmanager:
+#!   namespace: #@ data.values.certmanager.namespace
+#! ingress:
+#!   namespace: #@ data.values.ingress.namespace
+domain: #@ data.values.domain
+wildcard_domain: #@ data.values.wildcard_domain
+certs_use: #@ data.values.certs_use
+
+#@ data.values.certs_use=="aws":
+aws:
+  access_key_id: #@ data.values.aws.access_key_id
+  secret_access_key: #@ data.values.aws.secret_access_key
+  certs:
+    region: #@ data.values.aws.certs.region
+    email: #@ data.values.aws.certs.email
+#@ end
+#@ data.values.certs_use=="local_ca":
+local:
+  root_ca:
+    crt: #@ data.values.local.root_ca.crt
+    key: #@ data.values.local.root_ca.key
+#@ end
+#@ data.values.certs_use=="local_ca":
+provided:
+  wildcard_tls:
+    crt: #@ data.values.provided.wildcard_tls.crt
+    key: #@ data.values.provided.wildcard_tls.key
+#@ end
+#@ end
+
+#@overlay/match by=overlay.subset({"kind": "Secret", "metadata":{"name":"certs-config"}})
+---
+stringData:
+  values.yml: #@ yaml.encode(config())

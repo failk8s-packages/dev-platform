@@ -1,3 +1,23 @@
 #@data/values
 ---
-#! Add your values here
+domain:
+wildcard_domain:
+privileged_clusterrole_name:  #! In TMC clusters is: vmware-system-tmc-psp-privileged
+certs_use: #! aws, local_ca, provided
+aws:
+  access_key_id: REPLACE_ME
+  secret_access_key: REPLACE_ME
+  certs:
+    email: user@none.com
+    region: eu-west-1
+local:
+  root_ca:
+    crt:
+    key:
+provided:
+  wildcard_tls:
+    crt:
+    key:
+#! This value needs to change only when certs_use=provided
+certmanager:
+  cluster_issuer_name: wildcard

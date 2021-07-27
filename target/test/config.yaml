@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: dev-platform-config
+  namespace: dev-platform-package
+stringData:
+  values.yml: null

@@ -1,0 +1,23 @@
+#@ load("@ytt:overlay", "overlay")
+#@ load("@ytt:data", "data")
+#@ load("@ytt:yaml", "yaml")
+
+#@ def config():
+#! namespace: #@ data.values.knativeserving.namespace
+domain:  
+  type: real
+  name: #@ data.values.wildcard_domain
+#! ingress:
+#!   external:
+#!     namespace: #@ data.values.ingress.namespace
+#!   internal:
+#!     namespace: #@ data.values.ingress.namespace
+tls:
+  certmanager:
+    clusterissuer: #@ data.values.certmanager.cluster_issuer_name
+#@ end
+
+#@overlay/match by=overlay.subset({"kind": "Secret", "metadata":{"name":"knative-serving-config"}})
+---
+stringData:
+  values.yml: #@ yaml.encode(config())
