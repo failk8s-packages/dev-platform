@@ -26,6 +26,7 @@ function build {
     mkdir -p $BASE_DIR/target/bundle/config/upstream
     ytt --data-values-file $CONFIG_FILE -f $BASE_DIR/src/templates/package/bundle/upstream.yaml --output-files $BASE_DIR/target/bundle/config/upstream --ignore-unknown-comments
     ytt --data-values-file $CONFIG_FILE -f $BASE_DIR/src/templates/package/bundle/images.yml --output-files $BASE_DIR/target/bundle --ignore-unknown-comments
+    ytt --data-values-file $CONFIG_FILE -f $BASE_DIR/src/templates/package/bundle/bundle.yaml --output-files $BASE_DIR/target/bundle/.imgpkg --ignore-unknown-comments
 
     # Create manifests
     rm -rf $BASE_DIR/target/k8s && rm -rf $BASE_DIR/target/test && mkdir -p $BASE_DIR/target/k8s && mkdir -p $BASE_DIR/target/test 

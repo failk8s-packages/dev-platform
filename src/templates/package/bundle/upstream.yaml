@@ -16,8 +16,8 @@ metadata:
   name: #@ "{}".format(package.name)
   annotations:
     kapp.k14s.io/change-group.1: #@ "{}.{}/rbac".format(package.name, package.domain)
-    kapp.k14s.io/change-group.2: "tkgdev.failk8s.com/rbac"
-    kapp.k14s.io/change-rule.insert: "upsert after upserting tkgdev.failk8s.com/namespace"
+    kapp.k14s.io/change-group.2: "dev.failk8s.com/rbac"
+    kapp.k14s.io/change-rule.insert: "upsert after upserting dev.failk8s.com/namespace"
     kapp.k14s.io/change-rule.delete: #@ "delete after deleting {}.{}/package".format(package.name, package.domain)
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -36,8 +36,8 @@ metadata:
   namespace: #@ "{}".format(data.values.package.name)
   annotations:
     kapp.k14s.io/change-group.1: #@ "{}.{}/rbac".format(package.name, package.domain)
-    kapp.k14s.io/change-group.2: "tkgdev.failk8s.com/rbac"
-    kapp.k14s.io/change-rule.insert: "upsert after upserting tkgdev.failk8s.com/namespace"
+    kapp.k14s.io/change-group.2: "dev.failk8s.com/rbac"
+    kapp.k14s.io/change-rule.insert: "upsert after upserting dev.failk8s.com/namespace"
     kapp.k14s.io/change-rule.delete: #@ "delete after deleting {}.{}/package".format(package.name, package.domain)
 
 ---

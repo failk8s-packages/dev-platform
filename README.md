@@ -77,4 +77,4 @@ kubectl get packageinstall dev-platform -n dev-platform-package -o yaml
 3. Test your bundle: `ytt --data-values-file src/examples-values/override-minikube.yaml  -f target/bundle/config` providing a sample values file from [example-values](./src/examples-values/)
 4. Build your bundle `./hack/build.sh`
 5. Publish your bundle: `./hack/push.sh`
-6. Add it to the [tkgdev-repo](https://github.com/failk8s-packages/tkgdev-repo) and publish the new repo and test the package from there, or [test with local files](./target/test)
+6. Add it to the [failk8s-repo](https://github.com/failk8s-packages/failk8s-repo) and publish the new repo and test the package from there, or [test with local files](./target/test)

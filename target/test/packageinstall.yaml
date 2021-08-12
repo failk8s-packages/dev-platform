@@ -6,7 +6,7 @@ metadata:
 spec:
   serviceAccountName: dev-platform
   packageRef:
-    refName: dev-platform.tkgdev.failk8s.com
+    refName: dev-platform.dev.failk8s.com
     versionSelection:
       constraints: 0.0.0+develop
       prereleases: {}

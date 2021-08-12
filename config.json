@@ -2,60 +2,60 @@
     "registry": "quay.io/failk8s",
     "package": {
         "name": "dev-platform",
-        "domain": "tkgdev.failk8s.com",
+        "domain": "dev.failk8s.com",
         "displayName": "k8s Development platform",
         "version": "develop"
     },
     "packages": [
         {
             "name": "cert-manager",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop",
             "image": "quay.io/failk8s/cert-manager-package:develop"
         },
         {
             "name": "certs",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         },
         {
             "name": "contour",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         },
         {
             "name": "external-dns",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         },
         {
             "name": "knative-serving",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         },
         {
             "name": "metallb",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         },
         {
             "name": "registry",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         },
         {
             "name": "secretcopier-operator",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         },
         {
             "name": "testapp",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         },
         {
             "name": "testknativeapp",
-            "domain": "tkgdev.failk8s.com",
+            "domain": "dev.failk8s.com",
             "version": "develop"
         }
     ]

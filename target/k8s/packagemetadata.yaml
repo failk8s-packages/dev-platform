@@ -1,7 +1,7 @@
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: PackageMetadata
 metadata:
-  name: dev-platform.tkgdev.failk8s.com
+  name: dev-platform.dev.failk8s.com
   namespace: kapp-controller-packaging-global
 spec:
   displayName: k8s Development platform
