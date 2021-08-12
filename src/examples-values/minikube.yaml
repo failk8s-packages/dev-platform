@@ -1,0 +1,15 @@
+domain: minikube.example.com
+wildcard_domain: apps.minikube.example.com
+certs_use: local_ca
+metallb:
+  ip_range: 192.168.10.100
+local:
+  root_ca:
+    crt: |
+      -----BEGIN CERTIFICATE-----
+      AAA
+      -----END CERTIFICATE-----
+    key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      XXX
+      -----END RSA PRIVATE KEY-----

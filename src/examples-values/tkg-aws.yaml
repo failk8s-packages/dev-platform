@@ -1,0 +1,8 @@
+domain: example.com
+wildcard_domain: apps.example.com
+certs_use: aws
+aws:
+  access_key_id: ACCESSKEYAAABBBCCC
+  secret_access_key: SECRETACCESSKEY0001111222
+  certs:
+    email: user@example.com

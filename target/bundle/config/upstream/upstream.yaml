@@ -1,0 +1,589 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cert-manager
+  annotations:
+    kapp.k14s.io/change-group.1: cert-manager.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting cert-manager.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: cert-manager
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cert-manager
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: cert-manager.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting cert-manager.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cert-manager
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: cert-manager.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting cert-manager.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: cert-manager
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: cert-manager.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting cert-manager.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: cert-manager
+  packageRef:
+    refName: cert-manager.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: cert-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: certs
+  annotations:
+    kapp.k14s.io/change-group.1: certs.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting certs.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: certs
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: certs
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: certs.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting certs.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: certs
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: certs.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting certs.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: certs
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: certs.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting certs.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: certs
+  packageRef:
+    refName: certs.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: certs
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: contour
+  annotations:
+    kapp.k14s.io/change-group.1: contour.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting contour.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: contour
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: contour
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: contour.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting contour.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: contour
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: contour.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting contour.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: contour
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: contour.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting contour.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: contour
+  packageRef:
+    refName: contour.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: contour
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: external-dns
+  annotations:
+    kapp.k14s.io/change-group.1: external-dns.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting external-dns.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: external-dns
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: external-dns
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: external-dns.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting external-dns.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: external-dns
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: external-dns.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting external-dns.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: external-dns
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: external-dns.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting external-dns.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: external-dns
+  packageRef:
+    refName: external-dns.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: external-dns
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: knative-serving
+  annotations:
+    kapp.k14s.io/change-group.1: knative-serving.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting knative-serving.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: knative-serving
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: knative-serving
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: knative-serving.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting knative-serving.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: knative-serving
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: knative-serving.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting knative-serving.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: knative-serving
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: knative-serving.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting knative-serving.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: knative-serving
+  packageRef:
+    refName: knative-serving.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: knative-serving
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: metallb
+  annotations:
+    kapp.k14s.io/change-group.1: metallb.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting metallb.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: metallb
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: metallb
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: metallb.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting metallb.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: metallb
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: metallb.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting metallb.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: metallb
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: metallb.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting metallb.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: metallb
+  packageRef:
+    refName: metallb.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: metallb
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: registry
+  annotations:
+    kapp.k14s.io/change-group.1: registry.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting registry.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: registry
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: registry
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: registry.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting registry.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: registry
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: registry.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting registry.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: registry
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: registry.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting registry.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: registry
+  packageRef:
+    refName: registry.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: registry
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: secretcopier-operator
+  annotations:
+    kapp.k14s.io/change-group.1: secretcopier-operator.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting secretcopier-operator.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: secretcopier-operator
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: secretcopier-operator
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: secretcopier-operator.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting secretcopier-operator.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secretcopier-operator
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: secretcopier-operator.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting secretcopier-operator.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: secretcopier-operator
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: secretcopier-operator.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting secretcopier-operator.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: secretcopier-operator
+  packageRef:
+    refName: secretcopier-operator.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: secretcopier-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: testapp
+  annotations:
+    kapp.k14s.io/change-group.1: testapp.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting testapp.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: testapp
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: testapp
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: testapp.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting testapp.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: testapp
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: testapp.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting testapp.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: testapp
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: testapp.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting testapp.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: testapp
+  packageRef:
+    refName: testapp.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: testapp
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: testknativeapp
+  annotations:
+    kapp.k14s.io/change-group.1: testknativeapp.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting testknativeapp.tkgdev.failk8s.com/package
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: testknativeapp
+  namespace: dev-platform
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: testknativeapp
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group.1: testknativeapp.tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-group.2: tkgdev.failk8s.com/rbac
+    kapp.k14s.io/change-rule.insert: upsert after upserting tkgdev.failk8s.com/namespace
+    kapp.k14s.io/change-rule.delete: delete after deleting testknativeapp.tkgdev.failk8s.com/package
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: testknativeapp
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: testknativeapp.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting testknativeapp.tkgdev.failk8s.com/rbac
+stringData:
+  values.yml: null
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: testknativeapp
+  namespace: dev-platform
+  annotations:
+    kapp.k14s.io/change-group: testknativeapp.tkgdev.failk8s.com/package
+    kapp.k14s.io/change-rule.insert: upsert after upserting testknativeapp.tkgdev.failk8s.com/rbac
+spec:
+  serviceAccountName: testknativeapp
+  packageRef:
+    refName: testknativeapp.tkgdev.failk8s.com
+    versionSelection:
+      constraints: 0.0.0+develop
+      prereleases: {}
+  values:
+  - secretRef:
+      name: testknativeapp

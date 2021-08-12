@@ -1,0 +1,11 @@
+images:
+- image: quay.io/failk8s/cert-manager-package:develop
+- image: quay.io/failk8s/certs-package:develop
+- image: quay.io/failk8s/contour-package:develop
+- image: quay.io/failk8s/external-dns-package:develop
+- image: quay.io/failk8s/knative-serving-package:develop
+- image: quay.io/failk8s/metallb-package:develop
+- image: quay.io/failk8s/registry-package:develop
+- image: quay.io/failk8s/secretcopier-operator-package:develop
+- image: quay.io/failk8s/testapp-package:develop
+- image: quay.io/failk8s/testknativeapp-package:develop

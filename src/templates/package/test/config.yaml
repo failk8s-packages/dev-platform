@@ -4,7 +4,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name: #@ "{}-config".format(data.values.package.name)
+  name: #@ "{}".format(data.values.package.name)
   namespace: #@ "{}-package".format(data.values.package.name)
 stringData:
   values.yml: 

@@ -1,14 +1,22 @@
 #@ load("@ytt:data", "data")
 
+#@ def version(n):
+#@   if n == "develop":
+#@     return "0.0.0+develop"
+#@   else:
+#@     return n
+#@   end
+#@ end
+
 ---
 apiVersion: data.packaging.carvel.dev/v1alpha1
 kind: Package
 metadata:
-  name: #@ "{}.{}.{}".format(data.values.package.name, data.values.package.domain, data.values.package.version)
+  name: #@ "{}.{}.{}".format(data.values.package.name, data.values.package.domain, version(data.values.package.version))
   namespace: kapp-controller-packaging-global
 spec:
   refName: #@ "{}.{}".format(data.values.package.name, data.values.package.domain)
-  version: #@ data.values.package.version
+  version: #@ version(data.values.package.version)
 #!  releaseNotes: "Fixed some bugs"
 #!  capacityRequirementsDescription: "RAM: 10GB"
 #!  licenses:
