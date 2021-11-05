@@ -1,4 +1,74 @@
 ---
 apiVersion: imgpkg.carvel.dev/v1alpha1
-kind: ImagesLock
 images:
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/cert-manager-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/cert-manager-package:develop
+  image: quay.io/failk8s/cert-manager-package@sha256:a1269dff02657d91db041cb2a35f06e7c9c38b643cfe0eb6a830536d49258e0e
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/certs-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/certs-package:develop
+  image: quay.io/failk8s/certs-package@sha256:2f552fa0d4f094c811cbb371ac3dce93b774993498c39ac341f39c2837d6fef5
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/contour-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/contour-package:develop
+  image: quay.io/failk8s/contour-package@sha256:adc44e9c375c87ecaa90f4459118a031e7bb2dde6be17a05d786fa7953aefeff
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/external-dns-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/external-dns-package:develop
+  image: quay.io/failk8s/external-dns-package@sha256:b9527d3280967e1bf751e011fe75607eef2f35cc655460ec024a45d297f320ca
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/knative-serving-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/knative-serving-package:develop
+  image: quay.io/failk8s/knative-serving-package@sha256:47ba7c83a20bf00d7909c9e82bfaa331ce75aaeea9d4d98a8bc20d182681db37
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/metallb-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/metallb-package:develop
+  image: quay.io/failk8s/metallb-package@sha256:f7cbe55ca24a9ed0323b0cb40d4def07115b647be8bb6f58826d841c6c14eddf
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/registry-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/registry-package:develop
+  image: quay.io/failk8s/registry-package@sha256:a5e75b20a7d2063f9766f8e3778115e79b866c388cbcba47f3aaa5fbe16d9243
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/secretcopier-operator-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/secretcopier-operator-package:develop
+  image: quay.io/failk8s/secretcopier-operator-package@sha256:63de4fdb9a8e1845838283efabb5fd99551a0f31f62e517b04ef606e34838cd2
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/testapp-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/testapp-package:develop
+  image: quay.io/failk8s/testapp-package@sha256:38810bd538d57460fb6e6c5f33945570ecc54598e1bbb7e3d7b73aa0acf94d67
+- annotations:
+    kbld.carvel.dev/id: quay.io/failk8s/testknativeapp-package:develop
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: develop
+          url: quay.io/failk8s/testknativeapp-package:develop
+  image: quay.io/failk8s/testknativeapp-package@sha256:9d5b19b45abe7ea887a784ac9d50d272dc2c9bc20e45a1f03f2fe3102b21d04e
+kind: ImagesLock

@@ -4,7 +4,7 @@
 
 #@ def config():
 #! namespace: #@ data.values.knativeserving.namespace
-domain:  
+domain:
   type: real
   name: #@ data.values.wildcard_domain
 #! ingress:

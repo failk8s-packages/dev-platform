@@ -16,7 +16,11 @@ stringData:
 
 #@ else:
 
-#@overlay/match by=overlay.subset({"metadata":{"name":"metallb"}}),expects=4
+#@overlay/match by=overlay.subset({"metadata":{"name":"metallb"}}),expects=3
+#@overlay/remove
+---
+
+#@overlay/match by=overlay.subset({"kind":"ClusterRoleBinding","metadata":{"name":"dev-platform-package:metallb"}})
 #@overlay/remove
 ---
 

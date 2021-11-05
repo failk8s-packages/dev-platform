@@ -2,6 +2,8 @@
 #@ load("@ytt:data", "data")
 #@ load("@ytt:yaml", "yaml")
 
+#@ if data.values.certs_use == "aws":
+
 #@ def config():
 domain: #@ data.values.domain
 provider: aws
@@ -14,3 +16,15 @@ aws:
 ---
 stringData:
   values.yml: #@ yaml.encode(config())
+
+#@ else:
+
+#@overlay/match by=overlay.subset({"metadata":{"name":"external-dns"}}),expects=3
+#@overlay/remove
+---
+
+#@overlay/match by=overlay.subset({"kind":"ClusterRoleBinding","metadata":{"name":"dev-platform-package:external-dns"}})
+#@overlay/remove
+---
+
+#@ end
